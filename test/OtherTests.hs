@@ -86,9 +86,7 @@ testRequestNull = do
   status <- test requestNull
   isJust status @? "test requestNull does not return status"
   let (Just s) = status
-  status_source s == anySource @? "status returned from (test requestNull) does not have source set to anySource"
-  status_tag s == anyTag @? "status returned from (test requestNull) does not have tag set to anyTag"
-  status_error s == 0 @? "status returned from (test requestNull) does not have error set to success"
+  checkStatus s anySource anyTag
 
 commGetParentNullTest :: IO ()
 commGetParentNullTest = do
